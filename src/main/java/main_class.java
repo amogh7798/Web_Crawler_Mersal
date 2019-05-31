@@ -10,7 +10,7 @@ public class main_class implements Runnable{
     public static String Domain_Name;
     public static String Queue_File;
     public static String Crawled_File;
-    public static Integer Number_Of_Threads = 2;
+    public static Integer Number_Of_Threads = 8;
     public static volatile Queue<String> queue = new LinkedList<String>();
 
     public void create_workers(){
@@ -23,7 +23,6 @@ public class main_class implements Runnable{
     public static void create_jobs(){
         while(true) {
             if (queue.isEmpty()) {
-                System.out.println("yes");
                 for (String link : general.file_to_set(Queue_File)) {
                     queue.add(link);
                 }
@@ -44,7 +43,6 @@ public class main_class implements Runnable{
         while(true) {
             if(!queue.isEmpty()) {
                 String url = queue.remove();
-                System.out.println("Queue size is: " + queue.size());
                 Spider.crawl_page(Thread.currentThread().getName(), url);
             }
         }

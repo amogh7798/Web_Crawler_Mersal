@@ -1,7 +1,4 @@
-import sun.awt.image.ImageWatched;
-
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,8 +12,8 @@ public class Spider {
     public static String domain_name;
     public static String queue_file;
     public static String crawled_file;
-    public static Set<String> queue;
-    public static Set<String> crawled;
+    public static volatile Set<String> queue;
+    public static volatile Set<String> crawled;
 
     Spider(String project_name,String base_url,String domain_name){
         Spider.project_name = project_name;
